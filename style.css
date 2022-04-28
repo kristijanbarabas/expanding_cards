@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Tapestry&display=swap');
+
+* {
+    box-sizing: border-box;
+
+}
+body {
+    font-family: 'Tapestry', cursive;
+    margin: 0;
+    /* central positioning */
+    display: flex;
+    align-items: center;
+    /*vertikalno centriranje */
+    justify-content: center;
+    /* veličina cijelog ekrana pomoću view height*/
+    height: 100vh;
+    /* da se ne vidi scroll bar po defaultu*/
+    overflow: hidden;
+}
+
+.container {
+    /* pretvorili smo u red tako što smo izbrisali flex direction: column iz bodya te dodali display:flex, na container */
+    display: flex;
+    /* view width */
+    width: 90vw;
+}
+
+.panel {
+    /* postavili smo cijelu sliku za pozadinu panela*/
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* postavimo veličinu slike odnosno panela */
+    height: 80vh;
+    border-radius: 50px 0px;
+    color: white;
+    cursor: pointer;
+    /*pomoću flexa ih postavimo jednake ali ćemo pomoću active klase ih onda animirati*/
+    flex: 0.5;
+    margin: 10px;
+    /*mora biti relative jer ćemo h3 postaviti absolute kako bi h3 bili unutar panela*/
+    position: relative;
+    /*dodajemo tranziciju za onclick funkciju*/ 
+    transition: flex 0.7s ease-in;
+}
+
+
+/* stajling h3 unutar panela*/
+.panel h3 {
+    font-size: 24px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+    /*trenutno se ne vide headingsi ali kada budu aktivni paneli oni će se vidjeti*/
+    opacity: 0;
+}
+
+.panel.active {
+    flex: 1;
+}
+
+
+.panel.active h3 {
+    opacity: 1;
+}
+
+/*postavke da se na malom ekranu ne vide svi paneli*/
+@media(max-width: 480px) {
+    .container {
+        width: 100vw;
+    }
+/*uklanjanje 4 i 5 panela*/
+    .panel:nth-of-type(4),.panel:nth-of-type(5) {
+        display: none;
+    }
+}
